@@ -8,93 +8,106 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
+        color: #f1f5f9;
+        font-family: 'Inter', sans-serif;
+      }
+      .glow {
+        text-shadow: 0 0 8px rgba(255,255,255,0.5);
+      }
+      .card {
+        transition: all 0.3s ease;
+      }
+      .card:hover {
+        transform: scale(1.02);
+      }
+    </style>
   </head>
-  <body class="bg-slate-900">
-    <div id="root"></div>
+  <body class="min-h-screen flex flex-col items-center justify-center p-6">
+    <header class="text-center mb-10">
+      <h1 class="text-4xl md:text-6xl font-bold glow mb-2">Código Alerta Pomelli</h1>
+      <p class="text-slate-400 text-lg">A inteligência que traduz seu negócio em código estratégico</p>
+    </header>
+
+    <main id="root" class="w-full max-w-4xl"></main>
+
     <script type="text/babel">
       const steps = [
-  {
-    "id": "step1",
-    "number": "1",
-    "title": "Construindo o \"DNA de Negócios\"",
-    "subtitle": "A Análise do Branding",
-    "description": "Em vez de você ter que dizer para a IA: \"Minha cor é azul-petróleo e meu tom é divertido, mas profissional\", o Pomelli faz isso automaticamente:",
-    "points": [
-      "Você insere o link do seu site.",
-      "A IA escaneia tudo (textos, imagens, cores, fontes, estilo das fotos).",
-      "Ela extrai a \"essência\" da marca, criando um perfil completo chamado \"Business DNA\" (DNA de Negócios)."
-    ],
-    "meaning": "A IA \"aprende\" o seu branding. Ela sabe o que a sua marca realmente parece e como ela soa."
-  },
-  {
-    "id": "step2",
-    "number": "2",
-    "title": "Geração de Ideias",
-    "subtitle": "A Estratégia Automatizada",
-    "description": "Com o DNA da marca definido, a IA passa para a fase criativa e estratégica:",
-    "points": [
-      "O Pomelli sugere ideias de campanhas que fazem sentido para o seu negócio (ex: \"Campanha para o lançamento do novo produto X\" ou \"Conteúdo temático para o verão\").",
-      "A IA garante que essas ideias já estejam alinhadas com o tom e o estilo que ela identificou no Passo 1."
-    ],
-    "meaning": "Você não precisa mais \"quebrar a cabeça\" pensando em o que postar. A IA dá um pontapé inicial que já respeita o seu branding."
-  },
-  {
-    "id": "step3",
-    "number": "3",
-    "title": "Criação de Materiais",
-    "subtitle": "A Consistência Automatizada",
-    "description": "Por fim, o Pomelli usa o DNA para gerar os materiais finais:",
-    "points": [
-      "Ele cria posts para redes sociais (texto e imagem) que usam a sua paleta de cores, as suas fontes e o seu estilo de escrita.",
-      "O resultado é um conteúdo que está pronto para ser publicado e que é visualmente e narrativamente consistente com o seu site."
-    ],
-    "meaning": "A IA assegura que tudo o que você publica está \"na marca\" (on-brand), garantindo que a personalidade da sua empresa seja a mesma em todos os canais, sem exigir um designer ou copywriter caríssimo para supervisionar cada postagem."
-  }
-];
-      function App() {
-        const [active, setActive] = React.useState(null);
+        {
+          id: 1,
+          numero: "1",
+          titulo: "Construindo o DNA de Negócios",
+          subtitulo: "A Análise do Branding",
+          descricao: "O Pomelli escaneia seu site e transforma identidade visual e textual em dados estratégicos.",
+          pontos: [
+            "Você insere o link do seu site",
+            "A IA analisa cores, fontes e mensagens",
+            "Cria um perfil de identidade de marca completa"
+          ],
+          significado: "Isso elimina achismos e cria um mapa preciso do posicionamento de marca."
+        },
+        {
+          id: 2,
+          numero: "2",
+          titulo: "Gerando Ideias Reais e Contextuais",
+          subtitulo: "Mapeamento Inteligente",
+          descricao: "Cada dado é usado para gerar prompts e ideias alinhadas com sua linguagem e objetivos.",
+          pontos: [
+            "Textos e imagens servem de base para novas criações",
+            "A IA replica o tom da sua marca",
+            "Você obtém ideias e scripts prontos para aplicar"
+          ],
+          significado: "Assim, o conteúdo reflete sua essência — sem precisar reexplicar tudo."
+        },
+        {
+          id: 3,
+          numero: "3",
+          titulo: "Transformando Dados em Criação",
+          subtitulo: "Execução Assistida",
+          descricao: "Do branding às ações práticas — o Pomelli gera códigos, textos e insights para execução real.",
+          pontos: [
+            "Geração de códigos, legendas e criativos",
+            "Conecta marca, marketing e tecnologia",
+            "Pronto para exportar e publicar"
+          ],
+          significado: "Você ganha produtividade e consistência criativa imediata."
+        }
+      ];
+
+      function Card({ step, open, onClick }) {
         return (
-          <div className="max-w-3xl mx-auto p-4 text-white">
-            <header className="text-center mb-10">
-              <h1 className="text-4xl font-bold text-red-500">Código Alerta Pomelli</h1>
-              <h2 className="text-xl text-orange-400 mt-2">Novo Movimento Detectado</h2>
-              <p className="mt-4 bg-slate-800/50 rounded-md p-4 border border-red-500/30 text-red-400 font-semibold">
-                GOOGLE lança POMELLI, uma NOVA IA para CRIAR CAMPANHAS de marca
-              </p>
-            </header>
-            <main className="space-y-6">
-              {steps.map(step => {
-                const isActive = active === step.id;
-                return (
-                  <div key={step.id} className="p-6 rounded-lg border border-slate-700 bg-slate-800 cursor-pointer" onClick={() => setActive(isActive ? null : step.id)}>
-                    <div className="flex items-center gap-4">
-                      <div className="bg-slate-700 w-10 h-10 flex items-center justify-center rounded-full text-lg font-bold">
-                        {step.number}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold">{step.title}</h3>
-                        <p className="text-slate-400 text-sm">{step.subtitle}</p>
-                      </div>
-                    </div>
-                    {isActive && (
-                      <div className="mt-4 space-y-3">
-                        <p>{step.description}</p>
-                        <ul className="list-disc list-inside space-y-1">
-                          {step.points.map((pt, i) => <li key={i}>{pt}</li>)}
-                        </ul>
-                        <div className="mt-3 p-3 bg-slate-700 rounded-md">
-                          <p className="font-semibold">O que significa na prática?</p>
-                          <p className="text-sm">{step.meaning}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </main>
+          <div onClick={onClick} className="card cursor-pointer bg-slate-800/50 p-6 rounded-2xl mb-4 border border-slate-700">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-white">{step.numero}. {step.titulo}</h2>
+              <span className="text-slate-400 text-2xl">{open ? "−" : "+"}</span>
+            </div>
+            <p className="text-slate-400">{step.subtitulo}</p>
+            {open && (
+              <div className="mt-4 text-slate-300">
+                <p className="mb-2">{step.descricao}</p>
+                <ul className="list-disc list-inside mb-2">
+                  {step.pontos.map((p, i) => <li key={i}>{p}</li>)}
+                </ul>
+                <p className="italic text-slate-400">{step.significado}</p>
+              </div>
+            )}
           </div>
         );
       }
+
+      function App() {
+        const [openId, setOpenId] = React.useState(null);
+        return (
+          <div>
+            {steps.map(step => (
+              <Card key={step.id} step={step} open={openId === step.id} onClick={() => setOpenId(openId === step.id ? null : step.id)} />
+            ))}
+          </div>
+        );
+      }
+
       ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     </script>
   </body>
