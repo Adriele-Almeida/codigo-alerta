@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Código Alerta Pomelli</title>
+    <!-- Import do React e ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Import do Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-slate-900">
+    <div id="root"></div>
+
+    <!-- Import do componente React -->
+    <script type="text/babel" src="codigo-alerta-pomelli.jsx"></script>
+    <script type="text/babel">
+      ReactDOM.createRoot(document.getElementById('root')).render(
+        React.createElement(CodigoAlertaPomelli)
+      );
+    </script>
+  </body>
+</html>
